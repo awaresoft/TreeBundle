@@ -1,0 +1,21 @@
+<div class="sonata-tree__item__position">
+    {% if element.parent and element.parent.children[0] != element %}
+        <a href="{{ admin.generateUrl(admin.normalizedCode ~ '_up', { id: element.id }) }}">
+            <i class="fa fa-caret-up" title="{{ 'tree.admin.change_position.up' |trans }}"></i>
+        </a>
+    {% else %}
+        <a style="visibility: hidden;">
+            <i class="fa fa-caret-up" title="{{ 'tree.admin.change_position.up' |trans }}"></i>
+        </a>
+    {% endif %}
+
+    {% if element.parent and element.parent.children[element.parent.children|length - 1] != element %}
+        <a href="{{ admin.generateUrl(admin.normalizedCode ~ '_down', { id: element.id }) }}">
+            <i class="fa fa-caret-down" title="{{ 'tree.admin.change_position.down' |trans }}"></i>
+        </a>
+    {% else %}
+        <a style="visibility: hidden;">
+            <i class="fa fa-caret-down" title="{{ 'tree.admin.change_position.down' |trans }}"></i>
+        </a>
+    {% endif %}
+</div>

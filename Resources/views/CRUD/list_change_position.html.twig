@@ -1,0 +1,18 @@
+{% extends '@SonataAdmin/CRUD/base_list_field.html.twig' %}
+
+{%- block field %}
+    {% if object.parent and object.parent.children[0] != object %}
+        <a href="{{ admin.generateUrl(admin.normalizedCode ~ '_up', { id: object.id }) }}">
+            <i class="fa fa-caret-up"></i>
+        </a>
+    {% else %}
+        <a style="visibility: hidden;">
+            <i class="fa fa-caret-up"></i>
+        </a>
+    {% endif %}
+    {% if object.parent and object.parent.children[object.parent.children|length - 1] != object %}
+        <a href="{{ admin.generateUrl(admin.normalizedCode ~ '_down', { id: object.id }) }}">
+            <i class="fa fa-caret-down"></i>
+        </a>
+    {% endif %}
+{% endblock field -%}

@@ -1,0 +1,5 @@
+tree:
+    admin:
+        change_position:
+            up: Zmień pozycję elementu (do góry)
+            down: Zmień pozycję elementu (do dołu)
