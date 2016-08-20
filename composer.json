@@ -1,5 +1,5 @@
 {
-    "name": "awaresoft/TreeBundle",
+    "name": "awaresoft/tree-bundle",
     "type": "symfony-bundle",
     "description": "Symfony Awaresoft TreeBundle with Sonata libraries",
     "require": {
