@@ -7,7 +7,7 @@
         "symfony/symfony": ">= 2.7",
         "doctrine/orm": "2.*",
         "doctrine/doctrine-bundle": "1.*",
-        "sonata-project/admin-bundle": "3.*"
+        "sonata-project/admin-bundle": ">= 3.0"
     },
     "autoload": {
         "psr-4": { "Awaresoft\\TreeBundle\\": "" }

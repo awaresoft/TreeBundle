@@ -247,7 +247,7 @@ abstract class AbstractTreeAdmin extends AwaresoftAbstractAdmin
 
         $formMapper
             ->add('parent', null, [
-                'property' => 'treeTitleByLevelInSelect',
+                'choice_label' => 'treeTitleByLevelInSelect',
                 'required' => false,
                 'query_builder' => function ($repo) use ($id, $maxDepthLevel, $site) {
                     $qb = $repo->createQueryBuilder('c');
