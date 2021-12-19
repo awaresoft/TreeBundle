@@ -2,6 +2,7 @@
 
 namespace Awaresoft\TreeBundle\Admin;
 
+use Awaresoft\SettingBundle\Service\SettingService;
 use Awaresoft\Sonata\AdminBundle\Admin\AbstractAdmin as AwaresoftAbstractAdmin;
 use Doctrine\ORM\EntityManager;
 use Gedmo\Tree\Entity\Repository\NestedTreeRepository;
@@ -198,24 +199,26 @@ abstract class AbstractTreeAdmin extends AwaresoftAbstractAdmin
      *
      * @return null
      */
-    protected function prepareMaxDepthLevel($settingName)
+    protected function prepareMaxDepthLevel($settingName, SettingService $settingService = null)
     {
         $maxDepthLevel = 999;
-        $settingService = $this->configurationPool->getContainer()->get('awaresoft.setting');
-        $setting = $settingService->get($settingName);
 
-        if ($setting && $setting->isEnabled()) {
-            $maxDepth = $setting->getFields()->get('MAX_DEPTH');
+        if ($settingService) {
+            $setting = $this->setting->get($settingName);
 
-            if ($maxDepth && $maxDepth->isEnabled() && $maxDepth->getValue()) {
-                $maxDepthLevel = $maxDepth->getValue();
-            }
-
-            if ($this->getSubject() && $this->getSubject()->getId()) {
-                $maxDepth = $setting->getFields()->get('MAX_DEPTH_' . strtoupper(Sluggable\Urlizer::urlize($this->getSubject()->getName(), '_')));
+            if ($setting && $setting->isEnabled()) {
+                $maxDepth = $setting->getFields()->get('MAX_DEPTH');
 
                 if ($maxDepth && $maxDepth->isEnabled() && $maxDepth->getValue()) {
                     $maxDepthLevel = $maxDepth->getValue();
+                }
+
+                if ($this->getSubject() && $this->getSubject()->getId()) {
+                    $maxDepth = $setting->getFields()->get('MAX_DEPTH_' . strtoupper(Sluggable\Urlizer::urlize($this->getSubject()->getName(), '_')));
+
+                    if ($maxDepth && $maxDepth->isEnabled() && $maxDepth->getValue()) {
+                        $maxDepthLevel = $maxDepth->getValue();
+                    }
                 }
             }
         }
